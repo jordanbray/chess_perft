@@ -1,0 +1,29 @@
+[package]
+name = "chess_perft"
+version = "0.0.1"
+authors = ["Jordan Bray <jordanbray@gmail.com>"]
+description = "Test Chess Move Generator Performance"
+
+homepage = "https://github.com/jordanbray/chess_perft"
+repository = "https://github.com/jordanbray/chess_perft"
+readme = "README.md"
+keywords = ["chess", "perft", "move"]
+license = "LGPL-3.0+"
+documentation = "https://jordanbray.github.io/chess/chess/index.html"
+
+[profile.release]
+opt-level = 3
+debug = false
+
+[profile.dev]
+opt-level = 3
+debug = true
+
+[profile.test]
+opt-level = 3
+
+[dependencies]
+chess = "0.0.2"
+getopts = "0.2"
+
+
