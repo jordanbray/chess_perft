@@ -1,6 +1,6 @@
 [package]
 name = "chess_perft"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Jordan Bray <jordanbray@gmail.com>"]
 description = "Test Chess Move Generator Performance"
 
@@ -23,7 +23,7 @@ debug = true
 opt-level = 3
 
 [dependencies]
-chess = "0.0.4"
+chess = "0.1.0"
 getopts = "0.2"
 
 

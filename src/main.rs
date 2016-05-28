@@ -7,7 +7,7 @@ use std::time::SystemTime;
 use std::env;
 
 fn perform_perft(fen: String, depth: u64, cache_size: usize) {
-    let board = Board::from_fen(fen.to_owned());
+    let board = Board::from_fen(fen.to_owned()).unwrap();
     let start = SystemTime::now();
     let result = if cache_size == 0 { board.perft(depth) } else { board.perft_cache(depth, cache_size) };
     let duration = SystemTime::now().duration_since(start);
