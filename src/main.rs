@@ -2,7 +2,7 @@ extern crate chess;
 extern crate getopts;
 
 use getopts::Options;
-use chess::board::Board;
+use chess::{Board, construct};
 use std::time::SystemTime;
 use std::env;
 
@@ -64,7 +64,7 @@ fn main() {
         Some(x) => cache = x.parse::<usize>().unwrap()
     }
 
-    chess::construct::construct();
+    construct();
 
     perform_perft(fen, depth, cache);
 }
