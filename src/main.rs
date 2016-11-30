@@ -2,14 +2,20 @@ extern crate chess;
 extern crate getopts;
 
 use getopts::Options;
-use chess::{Board, construct};
+use chess::{Board, construct, MoveGen};
 use std::time::SystemTime;
 use std::env;
 
-fn perform_perft(fen: String, depth: u64, cache_size: usize) {
+fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool) {
     let board = Board::from_fen(fen.to_owned()).unwrap();
     let start = SystemTime::now();
-    let result = if cache_size == 0 { board.perft(depth) } else { board.perft_cache(depth, cache_size) };
+    let result = if movegen {
+            MoveGen::movegen_perft_test(board, depth as usize) as u64
+        } else if cache_size == 0 {
+            board.perft(depth)
+        } else {
+            board.perft_cache(depth, cache_size)
+        };
     let duration = SystemTime::now().duration_since(start);
     match duration {
         Ok(clock) => {
@@ -37,6 +43,7 @@ fn main() {
     opts.optopt("f", "fen", "set the FEN to perfromt the perft on.", "FEN");
     opts.optopt("d", "depth", "set the depth to process the perft.", "DEPTH");
     opts.optopt("c", "cache", "set the cache size to a particular value.  Use 0 for no cache.", "CACHE_SIZE");
+    opts.optflag("m", "movegen", "use the movegen structure");
     opts.optflag("h", "help", "print this help menu");
 
     let matches = match opts.parse(&args[1..]) {
@@ -66,5 +73,5 @@ fn main() {
 
     construct();
 
-    perform_perft(fen, depth, cache);
+    perform_perft(fen, depth, cache, matches.opt_present("m"));
 }

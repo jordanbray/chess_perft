@@ -18,6 +18,8 @@ The program will report the number of leaf nodes it found starting at that posit
 
 You can also use the -c [size] option to cache results at each depth, speeding up perft performance.
 
+You can also use the -m option to use the MoveGen structure, which is an iterator to test its functionality.
+
 ## Example
 
 ```bash
@@ -33,6 +35,7 @@ Result: 8031647685, Time: 69s 217ms
 [jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 6 -c 33554432 # Test the KiwiPete Position at Higher Depth With Cache
 Perft 6 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
 Result: 8031647685, Time: 18s 667ms
+[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 -m # Test the KiwiPete Position with movegen
 [jordan@localhost chess_perft]$ 
 
 ```
