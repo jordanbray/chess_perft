@@ -23,20 +23,22 @@ You can also use the -m option to use the MoveGen structure, which is an iterato
 ## Example
 
 ```bash
-[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 # Test the KiwiPete Position
+[jordan@blade chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 # Test the KiwiPete Position
 Perft 5 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
-Result: 193690690, Time: 1s 528ms
-[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 -c 65536 # Test the KiwiPete Position With Cache
+Result: 193690690, Time: 0s 885ms
+[jordan@blade chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 -c 65536 # Test the KiwiPete Position With Cache
 Perft 5 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
-Result: 193690690, Time: 0s 921ms
-[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 6 # Test the KiwiPete Position at Higher Depth
+Result: 193690690, Time: 0s 579ms
+[jordan@blade chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 6 # Test the KiwiPete Position at Higher Depth
 Perft 6 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
-Result: 8031647685, Time: 69s 217ms
-[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 6 -c 33554432 # Test the KiwiPete Position at Higher Depth With Cache
+Result: 8031647685, Time: 39s 474ms
+[jordan@blade chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 6 -c 33554432 # Test the KiwiPete Position at Higher Depth With Cache
 Perft 6 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
-Result: 8031647685, Time: 18s 667ms
-[jordan@localhost chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 -m # Test the KiwiPete Position with movegen
-[jordan@localhost chess_perft]$ 
+Result: 8031647685, Time: 14s 186ms
+[jordan@blade chess_perft]$ ./target/release/chess_perft -f "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1" -d 5 -m # Test the KiwiPete Position with movegen
+Perft 5 of r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
+Result: 193690690, Time: 0s 867ms
+[jordan@blade chess_perft]$
 
 ```
 

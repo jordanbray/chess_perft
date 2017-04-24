@@ -1,6 +1,6 @@
 [package]
 name = "chess_perft"
-version = "0.0.7"
+version = "0.1.0"
 authors = ["Jordan Bray <jordanbray@gmail.com>"]
 description = "This package runs a 'perft' test on a particular chess position.  This makes every move out to a certain depth, and counts the number of leaf-nodes.  This is used to verify that move generation is correct and fast.  This also (optionally) verifies that the hashing function produces unique values for each position."
 homepage = "https://github.com/jordanbray/chess_perft"
@@ -21,6 +21,6 @@ debug = true
 opt-level = 3
 
 [dependencies]
-chess = "0.3.2"
+chess = "0.4.0"
 getopts = "0.2"
 
