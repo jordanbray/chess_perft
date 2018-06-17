@@ -1,20 +1,10 @@
-extern crate chess;
-extern crate getopts;
-extern crate shakmaty;
-
-use getopts::Options;
-use chess::{Board, construct, MoveGen};
 use std::time::SystemTime;
-use std::env;
 
-use shakmaty::Chess;
-use shakmaty::Position;
-use shakmaty::fen::Fen;
-use shakmaty::fen::FenOpts;
-use shakmaty::perft;
+use chess::{Board,  MoveGen};
+use shakmaty::{Chess, fen::Fen, perft};
 
-pub fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool) {
-    {
+pub fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool, chess: bool, shakmaty: bool) {
+    if chess {
         let board = Board::from_fen(fen.to_owned()).unwrap();
         let start = SystemTime::now();
         let result = if movegen {
@@ -33,7 +23,7 @@ pub fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool) 
             }
         }
     }
-    {
+    if shakmaty {
         let setup: Fen = fen.parse().expect("invaild fen");
         let position: Chess = setup.position().expect("invalid setup");
         let start = SystemTime::now();
