@@ -1,6 +1,6 @@
 # Perft Test Benchmarks for crates.io/chess/
 
-This simple program tests the performance of the rust chess move generator.
+This simple program tests the performance of both the 'chess' crate and the 'shakmaty' crate.
 
 ## Compiling
 
@@ -16,9 +16,17 @@ To run the program, you must specify a valid FEN string (representing a chess po
 
 The program will report the number of leaf nodes it found starting at that position, and the amount of time it took to search (ignoring setup time, which currently is a lot).
 
-You can also use the -c [size] option to cache results at each depth, speeding up perft performance.
+You can also use the -a [size] option to cache results at each depth, speeding up perft performance.
 
 You can also use the -m option to use the MoveGen structure, which is an iterator to test its functionality.
+
+You can also specify the -c option to use the 'chess' crate, or the -s option to use the 'shakmaty' crate.  Note: not all of the features supported by this application are in the 'shakmaty' crate, so I default to calling their 'perft' function for all command-line arguments.
+
+# Performance
+
+Below I compare the performance numbers (using the command 'RUSTFLAGS="-C target-cpu=native" cargo bench | python graph_benches.py') of shakmaty and chess (lower is better).
+
+![Performance Numbers SVG](./performance.svg)
 
 ## Example
 
