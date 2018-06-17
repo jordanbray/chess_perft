@@ -1,30 +1,12 @@
 extern crate chess;
 extern crate getopts;
+extern crate shakmaty;
 
 use getopts::Options;
-use chess::{Board, construct, MoveGen};
-use std::time::SystemTime;
 use std::env;
 
-fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool) {
-    let board = Board::from_fen(fen.to_owned()).unwrap();
-    let start = SystemTime::now();
-    let result = if movegen {
-            MoveGen::movegen_perft_test(board, depth as usize) as u64
-        } else if cache_size == 0 {
-            board.perft(depth)
-        } else {
-            board.perft_cache(depth, cache_size)
-        };
-    let duration = SystemTime::now().duration_since(start);
-    match duration {
-        Ok(clock) => {
-            println!("Perft {} of {}\nResult: {}, Time: {}s {}ms", depth, fen, result, clock.as_secs(), clock.subsec_nanos() / 1000000);
-        }, Err(_) => {
-            panic!();
-        }
-    }
-}
+mod perft;
+use perft::perform_perft;
 
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} [options]", program);
@@ -70,8 +52,6 @@ fn main() {
         None => {},
         Some(x) => cache = x.parse::<usize>().unwrap()
     }
-
-    construct();
 
     perform_perft(fen, depth, cache, matches.opt_present("m"));
 }

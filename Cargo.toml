@@ -21,6 +21,13 @@ debug = true
 opt-level = 3
 
 [dependencies]
-chess = "0.4.0"
+chess = "0.4.3"
+shakmaty = "0.8.1"
 getopts = "0.2"
 
+[dev-dependencies]
+bencher = "0.1.5"
+
+[[bench]]
+name = "benches"
+harness = false
