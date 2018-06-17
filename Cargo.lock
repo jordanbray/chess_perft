@@ -34,7 +34,7 @@ dependencies = [
 
 [[package]]
 name = "chess_perft"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "bencher 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "chess 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)",

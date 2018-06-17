@@ -28,6 +28,8 @@ Below I compare the performance numbers (using the command 'RUSTFLAGS="-C target
 
 ![Performance Numbers SVG](./performance.svg)
 
+If viewing on crates.io, you can view the performance numbers on https://github.com/jordanbray/chess_perft.
+
 ## Example
 
 ```bash
