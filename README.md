@@ -1,4 +1,4 @@
-# Perft Test Benchmarks for crates.io/chess/
+# Perft Test Benchmarks for crates.io/chess/ and crates.io/shakmaty/
 
 This simple program tests the performance of both the 'chess' crate and the 'shakmaty' crate.
 
