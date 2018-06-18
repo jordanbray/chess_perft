@@ -49,7 +49,7 @@ shakmaty_rects = ax.barh(ind, times["shakmaty"], height, color='r', xerr=errors[
 chess_rects = ax.barh(ind + height, times["chess"], height, color='g', xerr=errors["chess"])
 
 ax.set_ylabel('Test')
-ax.set_xlabel('Time (in s)')
+ax.set_xlabel('Time (in ms)')
 ax.set_title('Times by move generator')
 ax.set_yticks(ind + height)
 ax.set_yticklabels(axes)
