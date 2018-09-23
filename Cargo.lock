@@ -18,7 +18,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "btoi"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "num-traits 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -26,7 +26,7 @@ dependencies = [
 
 [[package]]
 name = "chess"
-version = "1.0.4"
+version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rand 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -34,12 +34,12 @@ dependencies = [
 
 [[package]]
 name = "chess_perft"
-version = "1.0.5"
+version = "1.0.6"
 dependencies = [
  "bencher 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "chess 1.0.4 (registry+https://github.com/rust-lang/crates.io-index)",
+ "chess 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
- "shakmaty 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "shakmaty 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -88,12 +88,12 @@ dependencies = [
 
 [[package]]
 name = "shakmaty"
-version = "0.9.0"
+version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "arrayvec 0.4.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "bitflags 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "btoi 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "btoi 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "version_check 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -125,8 +125,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum arrayvec 0.4.7 (registry+https://github.com/rust-lang/crates.io-index)" = "a1e964f9e24d588183fcb43503abda40d288c8657dfc27311516ce2f05675aef"
 "checksum bencher 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "7dfdb4953a096c551ce9ace855a604d702e6e62d77fac690575ae347571717f5"
 "checksum bitflags 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = "d0c54bb8f454c567f21197eefcdbf5679d0bd99f2ddbe52e84c77061952e6789"
-"checksum btoi 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "8d15ecfe509efcb62cee526041279141acecfb1e2269fd1990d6990e84d88399"
-"checksum chess 1.0.4 (registry+https://github.com/rust-lang/crates.io-index)" = "c6eff840fbc1270b4036d55efdfbb38027eb88b6cf961fff56fc1494dfd6f63f"
+"checksum btoi 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "63768630c1a369de24db811366e5912f680e0ee8e71277e8d58d6151ed487658"
+"checksum chess 1.0.5 (registry+https://github.com/rust-lang/crates.io-index)" = "a785e3ddc7bcf49c3f6a26c21f6e795b421988649be21d473e45bf74bba36b00"
 "checksum fuchsia-zircon 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "2e9763c69ebaae630ba35f74888db465e49e259ba1bc0eda7d06f4a067615d82"
 "checksum fuchsia-zircon-sys 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "3dcaa9ae7725d12cdb85b3ad99a434db70b468c09ded17e012d86b5c1010f7a7"
 "checksum getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)" = "d9047cfbd08a437050b363d35ef160452c5fe8ea5187ae0a624708c91581d685"
@@ -134,7 +134,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum nodrop 0.1.12 (registry+https://github.com/rust-lang/crates.io-index)" = "9a2228dca57108069a5262f2ed8bd2e82496d2e074a06d1ccc7ce1687b6ae0a2"
 "checksum num-traits 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "775393e285254d2f5004596d69bb8bc1149754570dcc08cf30cabeba67955e28"
 "checksum rand 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)" = "eba5f8cb59cc50ed56be8880a5c7b496bfd9bd26394e176bc67884094145c2c5"
-"checksum shakmaty 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e305112281d57ef056815a60f0428624acc27941ac6c1c4bce554dd038940381"
+"checksum shakmaty 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)" = "2337b0f23a1b8bbe45306ac9f5c9326e7eae47c39832d8fd5dbd38cdbed26362"
 "checksum version_check 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)" = "6b772017e347561807c1aa192438c5fd74242a670a6cffacc40f2defd1dc069d"
 "checksum winapi 0.3.5 (registry+https://github.com/rust-lang/crates.io-index)" = "773ef9dcc5f24b7d850d0ff101e542ff24c3b090a9768e03ff889fdef41f00fd"
 "checksum winapi-i686-pc-windows-gnu 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
