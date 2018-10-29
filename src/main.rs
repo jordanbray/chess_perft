@@ -1,6 +1,7 @@
 extern crate chess;
 extern crate getopts;
 extern crate shakmaty;
+extern crate chess_move_gen;
 
 use getopts::Options;
 use std::env;
@@ -22,16 +23,18 @@ fn main() {
     let mut cache = 0;
     let mut chess = true;
     let mut shakmaty = false;
+    let mut chess_mg = false;
 
     let mut opts = Options::new();
     opts.optopt("f", "fen", "set the FEN to perfromt the perft on.", "FEN");
     opts.optopt("d", "depth", "set the depth to process the perft.", "DEPTH");
     opts.optopt("a", "cache", "set the cache size to a particular value.  Use 0 for no cache.", "CACHE_SIZE");
     opts.optflag("c", "chess", "use the 'chess' library only (default).");
+    opts.optflag("g", "chess-move-gen", "use the 'chess-move-gen library only.");
     opts.optflag("s", "shakmaty", "use the 'shakmaty' library only.");
-    opts.optflag("b", "both", "use both the 'chess' library and the 'shakmaty' library");
-    opts.optflag("m", "movegen", "use the movegen structure");
-    opts.optflag("h", "help", "print this help menu");
+    opts.optflag("a", "all", "use all supported libraries library.");
+    opts.optflag("m", "movegen", "use the movegen structure ('chess' only).");
+    opts.optflag("h", "help", "print this help menu.");
 
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
@@ -61,15 +64,23 @@ fn main() {
     if matches.opt_present("c") {
         chess = true;
         shakmaty = false;
+        chess_mg = false;
     }
     if matches.opt_present("s") {
         chess = false;
         shakmaty = true;
+        chess_mg = false;
     }
-    if matches.opt_present("b") {
+    if matches.opt_present("g") {
+        chess = false;
+        shakmaty = false;
+        chess_mg = true;
+    }
+    if matches.opt_present("a") {
         chess = true;
         shakmaty = true;
+        chess_mg = true;
     }
 
-    perform_perft(fen, depth, cache, matches.opt_present("m"), chess, shakmaty);
+    perform_perft(fen, depth, cache, matches.opt_present("m"), chess, shakmaty, chess_mg);
 }

@@ -9,7 +9,7 @@ errors = {}
 axes = []
 
 for x in lines:
-    if x == "running 81 tests\n":
+    if x == "running 108 tests\n":
         print("Found Start")
         started = True
         continue
@@ -22,7 +22,7 @@ for x in lines:
             time = int(result[2]) / 1000000.0
             error = int(result[3]) / 1000000.0
 
-            # print("%s on test %s ran in %i with error %i." % (program, test_number, time, error))
+            print("%s on test %s ran in %i with error %i." % (program, test_number, time, error))
 
             if program not in times:
                 times[program] = []
@@ -40,24 +40,26 @@ import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()
 
-N = len(times["chess"])
+N = len(times["chess_incremental"])
 ind = np.arange(N)
-height = 0.25
+height = 0.333
 
-shakmaty_rects = ax.barh(ind, times["shakmaty"], height, color='r', xerr=errors["shakmaty"])
+shakmaty_rects = ax.barh(ind - height, times["shakmaty"], height, color='r', xerr=errors["shakmaty"])
 #chess_incremental_rects = ax.barh(ind + height, times["chess_incremental"], height, color='b', xerr=errors["chess_incremental"])
-chess_rects = ax.barh(ind + height, times["chess"], height, color='g', xerr=errors["chess"])
+chess_rects = ax.barh(ind + height, times["chess_incremental"], height, color='g', xerr=errors["chess_incremental"])
+
+chess_movegen_rects = ax.barh(ind, times["chess_move_gen"], height, color='b', xerr=errors["chess_move_gen"])
 
 ax.set_ylabel('Test')
 ax.set_xlabel('Time (in ms)')
 ax.set_title('Times by move generator')
-ax.set_yticks(ind + height)
+ax.set_yticks(ind - height / 2)
 ax.set_yticklabels(axes)
-ax.legend((shakmaty_rects, chess_rects), ('shakmaty', 'chess'))
+ax.legend((shakmaty_rects, chess_rects, chess_movegen_rects), ('shakmaty', 'chess', 'chess_move_gen'))
 
 def autolabel(rects):
     for rect in rects:
-        ax.text(rect.get_width(), rect.get_y() + rect.get_height() / 2., '%.4f' % rect.get_width(), ha='left', va='bottom', size = 6)
+        ax.text(rect.get_width(), rect.get_y(), '%.4f' % rect.get_width(), ha='left', va='bottom', size = 7)
 
 
 def adjustFigAspect(fig,aspect=1):
@@ -80,7 +82,7 @@ def adjustFigAspect(fig,aspect=1):
 
 autolabel(shakmaty_rects)
 autolabel(chess_rects)
-#autolabel(chess_incremental_rects)
+autolabel(chess_movegen_rects)
 
 plt.rcParams["figure.figsize"] = [20, 1000]
 adjustFigAspect(fig, aspect=0.25)
