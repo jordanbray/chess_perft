@@ -26,7 +26,8 @@ dependencies = [
 
 [[package]]
 name = "chess"
-version = "2.0.0"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "rand 0.4.2 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -45,10 +46,10 @@ dependencies = [
 
 [[package]]
 name = "chess_perft"
-version = "2.0.0"
+version = "2.0.1"
 dependencies = [
  "bencher 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
- "chess 2.0.0",
+ "chess 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "chess-move-gen 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "getopts 0.2.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "shakmaty 0.11.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -197,6 +198,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 "checksum bencher 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = "7dfdb4953a096c551ce9ace855a604d702e6e62d77fac690575ae347571717f5"
 "checksum bitflags 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = "d0c54bb8f454c567f21197eefcdbf5679d0bd99f2ddbe52e84c77061952e6789"
 "checksum btoi 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "63768630c1a369de24db811366e5912f680e0ee8e71277e8d58d6151ed487658"
+"checksum chess 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "f201064306c819ec235875e32b8718d752ee114e8a6309f78184da73ab1b2898"
 "checksum chess-move-gen 0.6.3 (registry+https://github.com/rust-lang/crates.io-index)" = "9b529ae1286f1a368f5dd5a3b1e6e4f00e7fd7cfc07a6149c4f6ab108f08238d"
 "checksum cloudabi 0.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = "ddfc5b9aa5d4507acaf872de71051dfd0e309860e88966e1051e462a077aac4f"
 "checksum fuchsia-zircon 0.3.3 (registry+https://github.com/rust-lang/crates.io-index)" = "2e9763c69ebaae630ba35f74888db465e49e259ba1bc0eda7d06f4a067615d82"
