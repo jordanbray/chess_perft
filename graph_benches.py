@@ -9,7 +9,7 @@ errors = {}
 axes = []
 
 for x in lines:
-    if x == "running 108 tests\n":
+    if x == "running 81 tests\n":
         print("Found Start")
         started = True
         continue

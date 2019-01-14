@@ -28,6 +28,10 @@ You can also specify the -c option to use the 'chess' crate, the -s option to us
 
 Below I compare the performance numbers (using the command 'RUSTFLAGS="-C target-cpu=native" cargo bench | python graph_benches.py') of chess, chess-move-gen, and shakmaty (lower is better).
 
+Very important note: chess-move-gen performs much better on Intel CPU's than listed here.  Based on my memory, it was in the same range as 'chess', faster on some positions, but slower on others.  I will update the performance.svg file when I have time.  This was run on a Ryzen 5.
+
+I specifically ran chess-move-gen 0.6.3 to avoid the BMI2 slowdown on AMD processors that many chess programmers noticed.  This may be handled internally by the crate - I'm not sure.
+
 ![Performance Numbers SVG](./performance.svg)
 
 If viewing on crates.io, you can view the performance numbers on https://github.com/jordanbray/chess_perft.

@@ -7,7 +7,7 @@ use getopts::Options;
 use std::env;
 
 mod perft;
-use perft::perform_perft;
+use crate::perft::perform_perft;
 
 fn print_usage(program: &str, opts: Options) {
     let brief = format!("Usage: {} [options]", program);
@@ -33,7 +33,6 @@ fn main() {
     opts.optflag("g", "chess-move-gen", "use the 'chess-move-gen library only.");
     opts.optflag("s", "shakmaty", "use the 'shakmaty' library only.");
     opts.optflag("a", "all", "use all supported libraries library.");
-    opts.optflag("m", "movegen", "use the movegen structure ('chess' only).");
     opts.optflag("h", "help", "print this help menu.");
 
     let matches = match opts.parse(&args[1..]) {
@@ -82,5 +81,5 @@ fn main() {
         chess_mg = true;
     }
 
-    perform_perft(fen, depth, cache, matches.opt_present("m"), chess, shakmaty, chess_mg);
+    perform_perft(fen, depth, cache,  chess, shakmaty, chess_mg);
 }

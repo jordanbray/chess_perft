@@ -3,17 +3,11 @@ use std::time::SystemTime;
 use chess::{Board,  MoveGen};
 use shakmaty::{Chess, fen::Fen, perft as sperft};
 use chess_move_gen::{Position, perft as cperft};
-pub fn perform_perft(fen: String, depth: u64, cache_size: usize, movegen: bool, chess: bool, shakmaty: bool, chess_move_gen: bool) {
+pub fn perform_perft(fen: String, depth: u64, cache_size: usize, chess: bool, shakmaty: bool, chess_move_gen: bool) {
     if chess {
         let board = Board::from_fen(fen.to_owned()).unwrap();
         let start = SystemTime::now();
-        let result = if movegen {
-                MoveGen::movegen_perft_test(&board, depth as usize) as u64
-            } else if cache_size == 0 {
-                board.perft(depth)
-            } else {
-                board.perft_cache(depth, cache_size)
-            };
+        let result = MoveGen::movegen_perft_test(&board, depth as usize) as u64;
         let duration = SystemTime::now().duration_since(start);
         match duration {
             Ok(clock) => {
