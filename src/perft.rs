@@ -1,18 +1,26 @@
+use chess::{Board, MoveGen};
+use shakmaty::{fen::Fen, perft as sperft, Chess};
+use std::str::FromStr;
 use std::time::SystemTime;
 
-use chess::{Board,  MoveGen};
-use shakmaty::{Chess, fen::Fen, perft as sperft};
-use chess_move_gen::{Position, perft as cperft};
-pub fn perform_perft(fen: String, depth: u64, cache_size: usize, chess: bool, shakmaty: bool, chess_move_gen: bool) {
+pub fn perform_perft(fen: String, depth: u64, chess: bool, shakmaty: bool) {
     if chess {
-        let board = Board::from_fen(fen.to_owned()).unwrap();
+        let board = Board::from_str(&fen).unwrap();
         let start = SystemTime::now();
         let result = MoveGen::movegen_perft_test(&board, depth as usize) as u64;
         let duration = SystemTime::now().duration_since(start);
         match duration {
             Ok(clock) => {
-                println!("chess   : Perft {} of {}\tResult: {}\tTime: {}s {}ms", depth, fen, result, clock.as_secs(), clock.subsec_nanos() / 1000000);
-            }, Err(_) => {
+                println!(
+                    "chess   : Perft {} of {}\tResult: {}\tTime: {}s {}ms",
+                    depth,
+                    fen,
+                    result,
+                    clock.as_secs(),
+                    clock.subsec_nanos() / 1000000
+                );
+            }
+            Err(_) => {
                 panic!();
             }
         }
@@ -21,28 +29,22 @@ pub fn perform_perft(fen: String, depth: u64, cache_size: usize, chess: bool, sh
         let setup: Fen = fen.parse().expect("invaild fen");
         let position: Chess = setup.position().expect("invalid setup");
         let start = SystemTime::now();
-        let result = sperft(&position, depth as u8);
+        let result = sperft(&position, depth as u32);
         let duration = SystemTime::now().duration_since(start);
         match duration {
             Ok(clock) => {
-                println!("shakmaty: Perft {} of {}\tResult: {}\tTime: {}s {}ms", depth, fen, result, clock.as_secs(), clock.subsec_nanos() / 1000000);
-            }, Err(_) => {
+                println!(
+                    "shakmaty: Perft {} of {}\tResult: {}\tTime: {}s {}ms",
+                    depth,
+                    fen,
+                    result,
+                    clock.as_secs(),
+                    clock.subsec_nanos() / 1000000
+                );
+            }
+            Err(_) => {
                 panic!();
             }
         }
     }
-
-    if chess_move_gen {
-        let mut position = Position::from_fen(&fen).unwrap();
-        let start = SystemTime::now();
-        let result = cperft(&mut position, depth as usize, false, cache_size);
-        let duration = SystemTime::now().duration_since(start);
-        match duration {
-            Ok(clock) => {
-                println!("chess_mg : Perft {} of {}\tResult: {}\tTime: {}s {}ms", depth, fen, result, clock.as_secs(), clock.subsec_nanos() / 1000000);
-            }, Err(_) => { panic!(); }
-        }
-    }
 }
-
-

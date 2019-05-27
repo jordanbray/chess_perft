@@ -1,16 +1,6 @@
-# Perft Test Benchmarks for crates.io/chess/, crates.io/shakmaty/ and crates.io/chess-move-gen
+# Perft Test Benchmarks for crates.io/chess/, crates.io/shakmaty/
 
-This simple program tests the performance of the 'chess' crate, the 'shakmaty' crate and the 'chess-move-gen' crate.
-
-## Compiling
-
-This library now requires the nightly compiler to support the 'chess-move-gen' crate.
-
-Other than that, compiling this application should be as easy as:
-
-```bash
-cargo build --release
-```
+This simple program tests the performance of the 'chess' crate and the 'shakmaty' crate.  The 'chess-move-gen' crate was removed because it seems to be no-longer maintained (and I couldn't get it to compile recently).
 
 ## Running
 
@@ -26,11 +16,7 @@ You can also specify the -c option to use the 'chess' crate, the -s option to us
 
 # Performance
 
-Below I compare the performance numbers (using the command 'RUSTFLAGS="-C target-cpu=native" cargo bench | python graph_benches.py') of chess, chess-move-gen, and shakmaty (lower is better).
-
-Very important note: chess-move-gen performs much better on Intel CPU's than listed here.  Based on my memory, it was in the same range as 'chess', faster on some positions, but slower on others.  I will update the performance.svg file when I have time.  This was run on a Ryzen 5.
-
-I specifically ran chess-move-gen 0.6.3 to avoid the BMI2 slowdown on AMD processors that many chess programmers noticed.  This may be handled internally by the crate - I'm not sure.
+Below I compare the performance numbers (using the command 'RUSTFLAGS="-C target-cpu=native" cargo bench | python graph_benches.py') of chess and shakmaty (lower is better).
 
 ![Performance Numbers SVG](./performance.svg)
 

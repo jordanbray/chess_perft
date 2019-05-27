@@ -9,7 +9,7 @@ errors = {}
 axes = []
 
 for x in lines:
-    if x == "running 81 tests\n":
+    if x == "running 54 tests\n":
         print("Found Start")
         started = True
         continue
@@ -42,20 +42,18 @@ fig, ax = plt.subplots()
 
 N = len(times["chess_incremental"])
 ind = np.arange(N)
-height = 0.333
+height = 0.5
 
-shakmaty_rects = ax.barh(ind - height, times["shakmaty"], height, color='r', xerr=errors["shakmaty"])
-#chess_incremental_rects = ax.barh(ind + height, times["chess_incremental"], height, color='b', xerr=errors["chess_incremental"])
-chess_rects = ax.barh(ind + height, times["chess_incremental"], height, color='g', xerr=errors["chess_incremental"])
+shakmaty_rects = ax.barh(ind - height / 3, times["shakmaty"], height * 2/3, color='r', xerr=errors["shakmaty"])
+chess_rects = ax.barh(ind + height / 3, times["chess_incremental"], height * 2/3, color='g', xerr=errors["chess_incremental"])
 
-chess_movegen_rects = ax.barh(ind, times["chess_move_gen"], height, color='b', xerr=errors["chess_move_gen"])
 
 ax.set_ylabel('Test')
 ax.set_xlabel('Time (in ms)')
 ax.set_title('Times by move generator')
 ax.set_yticks(ind - height / 2)
 ax.set_yticklabels(axes)
-ax.legend((shakmaty_rects, chess_rects, chess_movegen_rects), ('shakmaty', 'chess', 'chess_move_gen'))
+ax.legend((shakmaty_rects, chess_rects), ('shakmaty', 'chess'))
 
 def autolabel(rects):
     for rect in rects:
@@ -82,7 +80,6 @@ def adjustFigAspect(fig,aspect=1):
 
 autolabel(shakmaty_rects)
 autolabel(chess_rects)
-autolabel(chess_movegen_rects)
 
 plt.rcParams["figure.figsize"] = [20, 1000]
 adjustFigAspect(fig, aspect=0.25)
