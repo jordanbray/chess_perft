@@ -50,10 +50,10 @@ chess_rects = ax.barh(ind + height / 3, times["chess_incremental"], height * 2/3
 
 ax.set_ylabel('Test')
 ax.set_xlabel('Time (in ms)')
-ax.set_title('Times by move generator')
+ax.set_title('Times by move generator\n(Lower is better)')
 ax.set_yticks(ind - height / 2)
 ax.set_yticklabels(axes)
-ax.legend((shakmaty_rects, chess_rects), ('shakmaty', 'chess'))
+ax.legend((shakmaty_rects, chess_rects), ('shakmaty 0.15.0', 'chess 3.1.1'))
 
 def autolabel(rects):
     for rect in rects:
