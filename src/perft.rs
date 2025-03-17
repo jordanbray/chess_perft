@@ -27,7 +27,10 @@ pub fn perform_perft(fen: String, depth: u64, chess: bool, shakmaty: bool) {
     }
     if shakmaty {
         let setup: Fen = fen.parse().expect("invaild fen");
-        let position: Chess = setup.position().expect("invalid setup");
+        let position: Chess = setup
+            .0
+            .position(shakmaty::CastlingMode::Standard)
+            .expect("invalid setup");
         let start = SystemTime::now();
         let result = sperft(&position, depth as u32);
         let duration = SystemTime::now().duration_since(start);
