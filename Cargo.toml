@@ -8,7 +8,7 @@ repository = "https://github.com/jordanbray/chess_perft"
 readme = "README.md"
 keywords = ["chess", "perft", "move"]
 license = "LGPL-3.0+"
-edition = "2018"
+edition = "2021"
 
 [build]
 rustflags = "-C target-cpu=native"
@@ -24,9 +24,10 @@ debug = true
 opt-level = 3
 
 [dependencies]
-chess = { path = "../chess/" }
+chess = { package = "chess", git = "https://github.com/jordanbray/chess.git" }
+chess-nightly = { package = "chess", git = "https://github.com/Orkking2/chess.git" }
 shakmaty = "0.27.3"
-chessie = "1.0.0"
+chessie = "2.0.0"
 cozy-chess = "0.3.4"
 getopts = "0.2.19"
 

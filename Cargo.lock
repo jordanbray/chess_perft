@@ -25,15 +25,12 @@ checksum = "dcfed56ad506cb2c684a14971b8861fdc3baaaae314b9e5f9bb532cbe3ba7a4f"
 
 [[package]]
 name = "arrayvec"
-version = "0.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23b62fc65de8e4e7f52534fb52b0f3ed04746ae267519eef2a83941e8085068b"
-
-[[package]]
-name = "arrayvec"
 version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "backtrace"
@@ -80,11 +77,22 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 [[package]]
 name = "chess"
 version = "3.2.0"
+source = "git+https://github.com/jordanbray/chess.git#0e538fbee63d01b282cd22a40f1b6655cd6922ab"
 dependencies = [
- "arrayvec 0.5.2",
+ "arrayvec",
  "failure",
  "nodrop",
  "rand",
+]
+
+[[package]]
+name = "chess"
+version = "4.0.0"
+source = "git+https://github.com/Orkking2/chess.git#17af896526bc486672b2c040b7ac03302502272e"
+dependencies = [
+ "arrayvec",
+ "rand",
+ "serde",
 ]
 
 [[package]]
@@ -92,7 +100,8 @@ name = "chess_perft"
 version = "3.1.1"
 dependencies = [
  "bencher",
- "chess",
+ "chess 3.2.0",
+ "chess 4.0.0",
  "chessie",
  "cozy-chess",
  "getopts",
@@ -101,20 +110,20 @@ dependencies = [
 
 [[package]]
 name = "chessie"
-version = "1.2.1"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27f5dbc38d7b44d42aab044749d3b22ca5f3dfa24deb235a12a2a915e878a642"
+checksum = "69f7ee9c07973fe2b0afe17de4ae2e1158aede0912d254a3be2d3a3b26386d23"
 dependencies = [
  "anyhow",
- "arrayvec 0.7.6",
+ "arrayvec",
  "chessie_types",
 ]
 
 [[package]]
 name = "chessie_types"
-version = "1.2.1"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b91a1af667d79c961ae8f1c28ee87a021c5f46c0250abcc9855eb9b3090d0e47"
+checksum = "ccab5c6928f8d27e6133280700b6a76e4e5d23353e8e1864a9a99c0f91efbb31"
 dependencies = [
  "anyhow",
 ]
@@ -324,7 +333,7 @@ version = "0.27.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f414cadc4e727893d1a3b0dca62aaef4c1c821dcbd969f0b10a92e12d684d53a"
 dependencies = [
- "arrayvec 0.7.6",
+ "arrayvec",
  "bitflags",
  "btoi",
  "nohash-hasher",
