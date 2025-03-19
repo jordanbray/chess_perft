@@ -111,7 +111,7 @@ pub fn perform_perft(fen: String, depth: u64, chess: bool, chess_nightly: bool, 
         match duration {
             Ok(clock) => {
                 println!(
-                    "chessie : Perft {} of {}\tResult: {}\tTime: {}s {}ms",
+                    "chessie       : Perft {} of {}\tResult: {}\tTime: {}s {}ms",
                     depth,
                     fen,
                     result,
@@ -132,7 +132,7 @@ pub fn perform_perft(fen: String, depth: u64, chess: bool, chess_nightly: bool, 
         match duration {
             Ok(clock) => {
                 println!(
-                    "cozy-chess : Perft {} of {}\tResult: {}\tTime: {}s {}ms",
+                    "cozy-chess    : Perft {} of {}\tResult: {}\tTime: {}s {}ms",
                     depth,
                     fen,
                     result,
