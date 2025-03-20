@@ -28,9 +28,6 @@ name = "arrayvec"
 version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
-dependencies = [
- "serde",
-]
 
 [[package]]
 name = "backtrace"
@@ -88,11 +85,9 @@ dependencies = [
 [[package]]
 name = "chess"
 version = "4.0.0"
-source = "git+https://github.com/Orkking2/chess.git#17af896526bc486672b2c040b7ac03302502272e"
 dependencies = [
  "arrayvec",
  "rand",
- "serde",
 ]
 
 [[package]]
