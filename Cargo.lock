@@ -85,6 +85,7 @@ dependencies = [
 [[package]]
 name = "chess"
 version = "4.0.0"
+source = "git+https://github.com/orkking2/chess.git#6c86d802711d9a6413e7a493ff2cb6e0728e466e"
 dependencies = [
  "arrayvec",
  "rand",

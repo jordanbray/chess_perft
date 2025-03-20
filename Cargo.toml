@@ -23,7 +23,7 @@ opt-level = 3
 
 [dependencies]
 chess = { package = "chess", git = "https://github.com/jordanbray/chess.git", default-features=false }
-chess-nightly = { package = "chess", path = "../chess/", default-features=false }
+chess-nightly = { package = "chess", git = "https://github.com/orkking2/chess.git", default-features=false }
 shakmaty = "0.27.3"
 chessie = "2.0.0"
 cozy-chess = "0.3.4"
