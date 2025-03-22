@@ -1,0 +1,4 @@
+[
+    {"perft_name": "chess_incremental", "perft_func": "movegen_perft"},
+    {"perft_name": "chess_nightly_incremental", "perft_func": "nightly_movegen_perft"}
+]

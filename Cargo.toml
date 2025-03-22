@@ -9,6 +9,7 @@ readme = "README.md"
 keywords = ["chess", "perft", "move"]
 license = "LGPL-3.0+"
 edition = "2021"
+build = "build/build.rs"
 
 [profile.release]
 opt-level = 3
@@ -23,14 +24,19 @@ opt-level = 3
 
 [dependencies]
 chess = { package = "chess", git = "https://github.com/jordanbray/chess.git", default-features=false }
-chess-nightly = { package = "chess", git = "https://github.com/orkking2/chess.git", default-features=false }
+chess-nightly = { package = "chess", git = "https://github.com/Orkking2/chess.git", default-features=false }
 shakmaty = "0.27.3"
 chessie = "2.0.0"
 cozy-chess = "0.3.4"
 getopts = "0.2.19"
+paste = "1.0.15"
 
 [dev-dependencies]
 bencher = "0.1.5"
+
+[build-dependencies]
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
 
 [[bench]]
 name = "benches"
