@@ -17,19 +17,18 @@ struct PIN {
 struct Func {
     perft_func: String,
     perft_name: String,
+    bench: bool,
 }
 
 const FN_STR: &'static str = "\
-\t\tpaste! {
-            #[allow(dead_code)]
-            fn [<perft_{id}_ $perft_name>](bench: &mut Bencher) {
-                $perft_func(
-                    bench,
-                    \"{fen}\".to_string(),
-                    {depth},
-                    {expected},
-                )
-            }
+\t\t#[allow(dead_code)]
+        fn perft_{id}_{perft_name}(bench: &mut Bencher) {
+            {perft_func}(
+                bench,
+                \"{fen}\".to_string(),
+                {depth},
+                {expected},
+            )
         }
 ";
 
@@ -45,8 +44,8 @@ fn main() {
         .read_to_end(&mut buf)
         .unwrap();
 
-    let s: String = buf.into_iter().map(|x| x as char).collect();
-    let inputs: Vec<PIN> = serde_json::from_str(s.as_str()).unwrap();
+    let s: String = buf.into_iter().map(char::from).collect();
+    let mut inputs: Vec<PIN> = serde_json::from_str(s.as_str()).unwrap();
 
     let mut buf = Vec::new();
     File::open(Path::new("build/perft_funcs.json"))
@@ -56,32 +55,44 @@ fn main() {
     let s: String = buf.into_iter().map(char::from).collect();
     let funcs: Vec<Func> = serde_json::from_str(s.as_str()).unwrap();
 
-    writeln!(
-        f,
-        r"use paste::paste;
-"
-    )
-    .unwrap();
-    let mut gpi_internal =
-        "macro_rules! gen_perft_inputs_internal {\n\t($perft_func:ident, $perft_name:tt) => {\n"
-            .to_string();
+    let mut gpi_internal = "macro_rules! gen_perft_inputs_internal {\n\t() => {\n".to_string();
 
     let mut gn_internal = "macro_rules! get_names_internal {\n\t($group_name:tt) => {\n\t\tbenchmark_group!(\n\t\t\t$group_name,\n".to_string();
 
+    let max_id_len = inputs
+        .iter()
+        .filter(|p| p.id.chars().next().unwrap().is_ascii_digit())
+        .max_by(|a, b| a.id.len().cmp(&b.id.len()))
+        .unwrap()
+        .id
+        .len();
+
+    inputs.iter_mut().for_each(|p| {
+        p.id = format!("{:0>max$}", p.id, max = max_id_len)
+    });
+
     gpi_internal.push_str(
-        inputs
-            .iter()
-            .cloned()
-            .map(|pin| {
-                FN_STR
-                    .to_string()
-                    .replace("{id}", &pin.id)
-                    .replace("{fen}", &pin.fen)
-                    .replace("{depth}", &pin.depth)
-                    .replace("{expected}", &pin.expected)
-            })
-            .collect::<String>()
-            .as_str(),
+        std::iter::repeat(
+            inputs
+                .iter()
+                .cloned()
+                .map(|pin| {
+                    FN_STR
+                        .to_string()
+                        .replace("{id}", &pin.id)
+                        .replace("{fen}", &pin.fen)
+                        .replace("{depth}", &pin.depth)
+                        .replace("{expected}", &pin.expected)
+                })
+                .collect::<String>(),
+        )
+        .zip(funcs.clone())
+        .map(|(s, f)| {
+            s.replace("{perft_name}", &f.perft_name)
+                .replace("{perft_func}", &f.perft_func)
+        })
+        .collect::<String>()
+        .as_str(),
     );
 
     gn_internal.push_str(
@@ -91,7 +102,7 @@ fn main() {
                 .map(|pin| N_STR.to_string().replace("{id}", &pin.id))
                 .collect::<String>(),
         )
-        .zip(funcs)
+        .zip(funcs.iter().filter(|f| f.bench))
         .map(|(s, f)| s.replace("{perft_name}", &f.perft_name))
         .collect::<String>()
         .as_str(),

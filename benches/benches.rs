@@ -14,10 +14,8 @@ include!(concat!(env!("OUT_DIR"), "/bench_macros.rs"));
 
 #[macro_export]
 macro_rules! gen_perft_inputs {
-    [$(($perft_name:ident, $perft_func:tt)),+] => {
-        $(
-            gen_perft_inputs_internal!($perft_func, $perft_name);
-        )*
+    () => {
+        gen_perft_inputs_internal!();
     }
 }
 
@@ -102,14 +100,8 @@ fn chessie_perft(bench: &mut Bencher, fen: String, depth: u64, count: u64) {
     bench.iter(|| assert_eq!(internal_chessie_perft(&game, depth), count));
 }
 
-// Should be sync'd with /perft_funcs.json
-gen_perft_inputs![
-    (chess_incremental, movegen_perft),
-    (chess_nightly_incremental, nightly_movegen_perft),
-    (shakmaty, shakmaty_perft),
-    (cozy, cozy_perft),
-    (chessie, chessie_perft)
-];
+// See perft_funcs.json
+gen_perft_inputs!();
 
 get_names!(benches);
 

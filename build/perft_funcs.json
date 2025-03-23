@@ -1,4 +1,7 @@
 [
-    {"perft_name": "chess_incremental", "perft_func": "movegen_perft"},
-    {"perft_name": "chess_nightly_incremental", "perft_func": "nightly_movegen_perft"}
+    {"bench": true, "perft_name": "chess_incremental", "perft_func": "movegen_perft"},
+    {"bench": true, "perft_name": "chess_nightly_incremental", "perft_func": "nightly_movegen_perft"},
+    {"bench": false, "perft_name": "shakmaty", "perft_func": "shakmaty_perft"},
+    {"bench": false, "perft_name": "cozy", "perft_func": "cozy_perft"},
+    {"bench": false, "perft_name": "chessie", "perft_func": "chessie_perft"}
 ]
