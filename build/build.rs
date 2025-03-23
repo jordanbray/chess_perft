@@ -67,7 +67,7 @@ fn main() {
         .id
         .len();
 
-    inputs.iter_mut().for_each(|p| {
+    inputs.iter_mut().filter(|p| p.id.chars().next().unwrap().is_ascii_digit()).for_each(|p| {
         p.id = format!("{:0>max$}", p.id, max = max_id_len)
     });
 
