@@ -25,12 +25,6 @@ checksum = "dcfed56ad506cb2c684a14971b8861fdc3baaaae314b9e5f9bb532cbe3ba7a4f"
 
 [[package]]
 name = "arrayvec"
-version = "0.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23b62fc65de8e4e7f52534fb52b0f3ed04746ae267519eef2a83941e8085068b"
-
-[[package]]
-name = "arrayvec"
 version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7c02d123df017efcdfbd739ef81735b36c5ba83ec3c59c80a9d7ecc718f92e50"
@@ -80,10 +74,20 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 [[package]]
 name = "chess"
 version = "3.2.0"
+source = "git+https://github.com/jordanbray/chess.git#0e538fbee63d01b282cd22a40f1b6655cd6922ab"
 dependencies = [
- "arrayvec 0.5.2",
+ "arrayvec",
  "failure",
  "nodrop",
+ "rand",
+]
+
+[[package]]
+name = "chess"
+version = "4.0.0"
+source = "git+https://github.com/Orkking2/chess.git#da4b47baee605fa4523b7cf37a4b3fb17d2cfb28"
+dependencies = [
+ "arrayvec",
  "rand",
 ]
 
@@ -92,29 +96,33 @@ name = "chess_perft"
 version = "3.1.1"
 dependencies = [
  "bencher",
- "chess",
+ "chess 3.2.0",
+ "chess 4.0.0",
  "chessie",
  "cozy-chess",
  "getopts",
+ "paste",
+ "serde",
+ "serde_json",
  "shakmaty",
 ]
 
 [[package]]
 name = "chessie"
-version = "1.2.1"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "27f5dbc38d7b44d42aab044749d3b22ca5f3dfa24deb235a12a2a915e878a642"
+checksum = "69f7ee9c07973fe2b0afe17de4ae2e1158aede0912d254a3be2d3a3b26386d23"
 dependencies = [
  "anyhow",
- "arrayvec 0.7.6",
+ "arrayvec",
  "chessie_types",
 ]
 
 [[package]]
 name = "chessie_types"
-version = "1.2.1"
+version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b91a1af667d79c961ae8f1c28ee87a021c5f46c0250abcc9855eb9b3090d0e47"
+checksum = "ccab5c6928f8d27e6133280700b6a76e4e5d23353e8e1864a9a99c0f91efbb31"
 dependencies = [
  "anyhow",
 ]
@@ -172,6 +180,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "07e28edb80900c19c28f1072f2e8aeca7fa06b23cd4169cefe1af5aa3260783f"
 
 [[package]]
+name = "itoa"
+version = "1.0.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
+
+[[package]]
 name = "libc"
 version = "0.2.171"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -218,6 +232,12 @@ checksum = "62948e14d923ea95ea2c7c86c71013138b66525b86bdc08d2dcc262bdb497b87"
 dependencies = [
  "memchr",
 ]
+
+[[package]]
+name = "paste"
+version = "1.0.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
 
 [[package]]
 name = "ppv-lite86"
@@ -299,6 +319,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "719b953e2095829ee67db738b3bfa9fa368c94900df327b3f07fe6e794d2fe1f"
 
 [[package]]
+name = "ryu"
+version = "1.0.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "28d3b2b1366ec20994f1fd18c3c594f05c5dd4bc44d8bb0c1c632c8d6829481f"
+
+[[package]]
 name = "serde"
 version = "1.0.219"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -319,12 +345,24 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_json"
+version = "1.0.140"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "20068b6e96dc6c9bd23e01df8827e6c7e1f2fddd43c21810382803c136b99373"
+dependencies = [
+ "itoa",
+ "memchr",
+ "ryu",
+ "serde",
+]
+
+[[package]]
 name = "shakmaty"
 version = "0.27.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f414cadc4e727893d1a3b0dca62aaef4c1c821dcbd969f0b10a92e12d684d53a"
 dependencies = [
- "arrayvec 0.7.6",
+ "arrayvec",
  "bitflags",
  "btoi",
  "nohash-hasher",
